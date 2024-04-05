@@ -86,7 +86,7 @@ class exemplo1{
                     break;
             
                 default:
-                System.out.println(" \n opccao invalida");
+                System.out.println(" \n opccao invalida!");
                     break;
             }
             
