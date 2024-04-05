@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.Scanner;
 
 class exemplo1{
@@ -5,11 +6,11 @@ class exemplo1{
         
         Scanner input = new Scanner(System.in);
         
-        Contato [] contato = new Contato[5];
+        Contato [] contatos = new Contato[5];
         
-        int numContato = 0;
+        int numContatos = 0;
         
-        boolean encontrado;
+        boolean encontrado = true;
 
         boolean executando = false;
 
@@ -25,53 +26,62 @@ class exemplo1{
 
             switch (opcao) {
                 case 1:
-                    contato[numContato] = new Contato("Marcelo", "1111 - 1111");
-                    numContato ++;
+                    System.out.print("Nome: ");
+                    String nome = input.next();
+
+                    System.out.print("Telefone: ");
+                    String telefone = input.next();
                     
-                    contato[numContato] = new Contato("Janerio", "1111 - 1111");
-                    numContato ++;
+                    contatos[numContatos] = new Contato(nome, telefone);
+                    numContatos ++;
                     break;
                 
                 case 2:
+                    System.out.print("Digite o nome a ser buscado: ");
+                    String nomeBusca = input.next();
                     encontrado = false;
-                    String nome = "Janerio";
                     
-                    for(int i =0; i < numContato; i ++){
-                        if(contato[i].getNome().equalsIgnoreCase(nome)){
-                            System.out.println("Telefone de " + nome + ":" + contato[i].getTelefone());
+                    for(int i =0; i < numContatos; i ++){
+                        if(contatos[i].getNome().equalsIgnoreCase(nomeBusca)){
+                            System.out.println("Telefone de " + nomeBusca + ":" + contatos[i].getTelefone());
                             encontrado = true;
                             break;
                         }
-                    }
-                    if(encontrado == false){
-                        System.out.println("Nome nao encontrado");
-                    }
-                    break;
+                        }
+                        if(encontrado == false){
+                            System.out.println("Nome nao encontrado!");
+                        }
+                            break;
 
                 case 3:
-                    String nomeBusca = "Janerio";
-                    encontrado = false;
+                    System.out.print("Digite o nome a ser editado: ");
+                    String nomeEditado = input.next();
                     
-                    for(int i =0; i < numContato; i ++){
-                        if(contato[i].getNome().equalsIgnoreCase(nomeBusca)){
-                            
-                            contato[i].setTelefone("7777-7777");
-                            
+                    for(int i =0; i < numContatos; i ++){
+                        if(contatos[i].getNome().equalsIgnoreCase(nomeEditado)){
+                            System.out.print("Insira o novo telefone: ");
+                            String novoTelefone = input.next();
+                            contatos[i].setTelefone(novoTelefone);
                             encontrado = true;
+                            System.out.println("Contato atualizado com sucesso!");
                             break;
-                            
                         }
                     }
-                    if(encontrado == false){
-                        System.out.println("Nome nao encontrado");
+                    if(!encontrado){
+                        System.out.println("Nome nao encontrado!");
+                    }
+                    break;1
+                    
+                    
+                case 4:
+                    System.out.print("Contato no sistema: \n");
+                    for(int i = 0; i < numContatos; i++){
+                        System.out.println("Nome: " + contatos[i].getNome() + "\nTelefone: " + contatos[i].getTelefone());
                     }
                     break;
                     
-                    case 4:
-                    
                 case 5:
-                    
-                    
+                    System.out.println("Programa encerrado");
                     executando = true;
                     break;
             
