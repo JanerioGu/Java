@@ -70,7 +70,7 @@ class exemplo1{
                     if(!encontrado){
                         System.out.println("Nome nao encontrado!");
                     }
-                    break;1
+                    break;
                     
                     
                 case 4:
