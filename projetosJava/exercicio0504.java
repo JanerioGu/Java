@@ -25,7 +25,7 @@ class Cliente{
     public Cliente(String nome, String email, String endereco){
         this.nome = nome;
         this.email = email;
-        this.endereco = endereco;
+        this.endereco = endereco; //construtores!!!
     }
 
 public String getNome(){
