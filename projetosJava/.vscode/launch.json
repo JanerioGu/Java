@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Estacionamento",
+            "request": "launch",
+            "mainClass": "Estacionamento",
+            "projectName": "projetosjava" // Substitua pelo nome real do seu projeto
+        }
+    ]
+}

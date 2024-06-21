@@ -54,7 +54,7 @@ public void status(){
     System.out.println("Tipo Conta" + this.getTipoConta());
     System.out.println("Titular da conta : " + this.getTitularConta());
     System.out.println("Saldo : " + this.getSaldo());
-    System.out.println("Status : " + this.getStatus());
+    /*System.out.println("Status : " + this.getStatus());*/
 }
 
 

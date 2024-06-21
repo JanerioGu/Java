@@ -1,117 +1,207 @@
-import java.io.Console;
 import java.util.Scanner;
-
-class exemplo1{
+ 
+class exemplo {
     public static void main(String[] args) {
         
         Scanner input = new Scanner(System.in);
         
-        Contato [] contatos = new Contato[5];
+        Contato[] contato = new Contato[10];
         
         int numContatos = 0;
         
-        boolean encontrado = true;
-
-        boolean executando = false;
-
-        while (executando == false) {
-
+        String nomeBusca;
+       
+        boolean encontrado, executando = true;
+        
+        while(executando){
             System.out.println("[1] Adicionar contato");
             System.out.println("[2] Buscar contato");
             System.out.println("[3] Editar contato");
-            System.out.println("[4] Listar contato");
-            System.out.println("[5] Sair");
-
+            System.out.println("[4] Excluir contato");
+            System.out.println("[5] Listar contatos");
+            System.out.println("[6] Sair");
             int opcao = input.nextInt();
-
-            switch (opcao) {
+            
+            /* Limpa o buffer do teclado */
+            input.nextLine();
+            
+            switch(opcao){
+                 /* Adicionar contato */
                 case 1:
-                    System.out.print("Nome: ");
-                    String nome = input.next();
-
-                    System.out.print("Telefone: ");
-                    String telefone = input.next();
                     
-                    contatos[numContatos] = new Contato(nome, telefone);
-                    numContatos ++;
+                    if(numContatos == 10){
+                        System.out.println("A agenda esta cheia!\n");
+                        break;
+                    }
+                    
+                    System.out.print("Informe nome: ");
+                    String nome = input.nextLine();
+                    
+                    System.out.print("Informe telefone: ");
+                    String telefone = input.nextLine();
+                    
+                    contato[numContatos] = new Contato(nome, telefone);
+                    numContatos++;
+                    
+                    System.out.println("Contato cadastrado com sucesso!\n");
+                    
                     break;
                 
+                 /* Buscar contato */    
                 case 2:
-                    System.out.print("Digite o nome a ser buscado: ");
-                    String nomeBusca = input.next();
+                    
+                    if(numContatos == 0){
+                        System.out.println("A agenda esta vazia!\n");
+                        break;
+                    }
+                    
+                    System.out.print("Informe nome para busca: ");
+                    nomeBusca = input.nextLine();
+                    
                     encontrado = false;
                     
-                    for(int i =0; i < numContatos; i ++){
-                        if(contatos[i].getNome().equalsIgnoreCase(nomeBusca)){
-                            System.out.println("Telefone de " + nomeBusca + ":" + contatos[i].getTelefone());
-                            encontrado = true;
-                            break;
-                        }
-                        }
-                        if(encontrado == false){
-                            System.out.println("Nome nao encontrado!");
-                        }
-                            break;
-
-                case 3:
-                    System.out.print("Digite o nome a ser editado: ");
-                    String nomeEditado = input.next();
-                    
-                    for(int i =0; i < numContatos; i ++){
-                        if(contatos[i].getNome().equalsIgnoreCase(nomeEditado)){
-                            System.out.print("Insira o novo telefone: ");
-                            String novoTelefone = input.next();
-                            contatos[i].setTelefone(novoTelefone);
-                            encontrado = true;
-                            System.out.println("Contato atualizado com sucesso!");
-                            break;
-                        }
-                    }
-                    if(!encontrado){
-                        System.out.println("Nome nao encontrado!");
-                    }
-                    break;
-                    
-                    
-                case 4:
-                    System.out.print("Contato no sistema: \n");
                     for(int i = 0; i < numContatos; i++){
-                        System.out.println("Nome: " + contatos[i].getNome() + "\nTelefone: " + contatos[i].getTelefone());
+                        if(contato[i].getNome().equalsIgnoreCase(nomeBusca)){
+                            
+                            encontrado = true;
+                            
+                            System.out.println("Telefone de " + nomeBusca + ": " + contato[i].getTelefone() + "\n");
+                            
+                            break;
+                        }
                     }
-                    break;
                     
+                    if(encontrado == false){
+                        System.out.println("Nome nao encontrado!\n");
+                    }
+                    
+                    break;
+                
+                /* Editar contato */
+                case 3:
+                    
+                    if(numContatos == 0){
+                        System.out.println("A agenda esta vazia!\n");
+                        break;
+                    }
+                    
+                    System.out.print("Informe nome para busca: ");
+                    nomeBusca = input.nextLine();
+ 
+ 
+                    encontrado = false;
+                    
+                    for(int i = 0; i < numContatos; i++){
+                        if(contato[i].getNome().equalsIgnoreCase(nomeBusca)){
+                            
+                            encontrado = true;
+                            
+                            System.out.print("Informe novo telefone: ");
+                            String novoTelefone = input.nextLine();
+                            
+                            contato[i].setTelefone(novoTelefone);
+                            
+                            System.out.println("Telefone atualizado com sucesso!\n");
+                            
+                            break;
+                        }
+                    }
+                    
+                    if(encontrado == false){
+                        System.out.println("Nome nao encontrado!\n");
+                    }
+                    
+                    break;
+                
+                /* Excluir contato */
+                case 4:
+                    
+                    if(numContatos == 0){
+                        System.out.println("A agenda esta vazia!\n");
+                        break;
+                    }
+                    
+                    System.out.print("Informe nome para busca: ");
+                    nomeBusca = input.nextLine();
+ 
+ 
+                    encontrado = false;
+                    
+                    for(int i = 0; i < numContatos; i++){
+                        if(contato[i].getNome().equalsIgnoreCase(nomeBusca)){
+                            
+                            encontrado = true;
+                            
+                            for(int j = i; j < numContatos - 1; j++){
+                                contato[j].setNome(contato[j + 1].getNome());
+                                contato[j].setTelefone(contato[j + 1].getTelefone());
+                            }
+                            System.out.println("Contato excluido com sucesso!\n");
+                            
+                            numContatos--;
+                            
+                            break;
+                        }
+                    }
+                    
+                    if(encontrado == false){
+                        System.out.println("Nome nao encontrado!\n");
+                    }
+                    
+                    break;
+                
+                /* Listar contatos */
                 case 5:
-                    System.out.println("Programa encerrado");
-                    executando = true;
+                    
+                    if(numContatos == 0){
+                        System.out.println("A agenda esta vazia!\n");
+                        break;
+                    }
+                    
+                    for(int i = 0; i < numContatos; i++){
+                        System.out.println("Contato: " + (i + 1));
+                        System.out.println("Nome: " + contato[i].getNome());
+                        System.out.println("Telefone: " + contato[i].getTelefone() +"\n");
+                    }
+                    
                     break;
-            
+                
+                /* Sair */   
+                case 6:
+                    executando = false;
+                    break;
+                
                 default:
-                System.out.println(" \n opccao invalida!");
-                    break;
+                    System.out.println("Opcao invalida!\n");
             }
-            
         }
+        
+        input.close();
     }
 }
-
+ 
 class Contato{
     public String nome;
     public String telefone;
-
+    
     public Contato(String nome, String telefone){
         this.nome = nome;
         this.telefone = telefone;
     }
-
+    
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    
     public String getNome(){
         return this.nome;
     }
-
-    public String getTelefone(){
-        return this.telefone;
-    }
-
+    
     public void setTelefone(String telefone){
         this.telefone = telefone;
+    }
+    
+    public String getTelefone(){
+        return this.telefone;
     }
 }

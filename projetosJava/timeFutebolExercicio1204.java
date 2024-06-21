@@ -1,40 +1,45 @@
+/**
+ * timeFutebolExercicio1204
+ */
 public class timeFutebolExercicio1204 {
-    public static void main(String[] args) {
+
+    public static void main (String[] args){
         Time time1 = new Time("Barcelona");
-        Jogador jogador1 = new Jogador("Neymar", "Atacante");
-        Jogador jogador2 = new Jogador("Vini JR", "Ponta");
+        Jogador jogador1 = new Jogador("Juliano", "Atacante");
+        Jogador jogador2 = new Jogador("Janerio", "Meio - campo");
+
         time1.adicionarJogador(jogador1);
         time1.adicionarJogador(jogador2);
-        time1.imprimirDetalhes();
 
+        time1.exibirDetalhes();
     }
 }
 
 class Time{
-    public String nome;
+    public String nomeTime;
     public Jogador[] jogadores;
-    public int numJogadores;
+    public int numJogador;
 
-    public Time (String time){
-        this.nome = time;
-        this.jogadores = new Jogador[3];
-        this.numJogadores = 0;
+    public Time(String nomeTime){
+        this.nomeTime = nomeTime;
+        this.jogadores = new Jogador[2];
+        this.numJogador = 0;
+    }
+
+    public String GetNomeTime(){
+        return this.nomeTime;
     }
 
     public void adicionarJogador(Jogador jogador){
-        jogadores[numJogadores] = jogador;
-        numJogadores++;
+        jogadores[numJogador] = jogador;
+        numJogador ++;
     }
 
-    public String getNome(){
-        return this.nome;
-    }
-
-    public void imprimirDetalhes(){
-        System.out.println("Time : " + this.nome);
-        for(int i = 0; i < numJogadores; i++){
-            
-            System.out.println("Jogador :" + jogadores[i].getJogadores() + "  Posição : " + jogadores[i].getPosicaoJogador());
+    public void exibirDetalhes(){
+        System.out.println("Time -  " + this.GetNomeTime());
+        for(int i = 0; i < numJogador; i++){
+            System.out.println("Jogador : " + jogadores[i].getJogador());
+            System.out.println("Posicao jogador: " + jogadores[i].getPosicao());
         }
     }
 }
@@ -42,19 +47,17 @@ class Time{
 class Jogador{
     public String jogadores;
     public String posicaoJogador;
-    int numJogadores;
 
-    public Jogador (String jogadores, String posicaoJogador){
-        this.jogadores = jogadores;
+    public Jogador(String jogador, String posicaoJogador){
+        this.jogadores = jogador;
         this.posicaoJogador = posicaoJogador;
-        this.numJogadores = 0;
     }
 
-    public String getJogadores(){
+    public String getJogador(){
         return this.jogadores;
     }
 
-    public String getPosicaoJogador(){
+    public String getPosicao(){
         return this.posicaoJogador;
     }
- }
+}
